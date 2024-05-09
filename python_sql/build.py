@@ -59,9 +59,9 @@ def insert_to_members(conn):
 def insert_to_employees(conn):
     sql = """
          INSERT INTO employee VALUES
-	        (1, 'Nicolene', 'Jones', 20),
-            (2, 'Anna', 'Smith', 10),
-            (3, 'Jessica', 'Brown', 5);
+	        (1, 'Nicolene', 'Jones', 20, 7),
+            (2, 'Anna', 'Smith', 10, 7),
+            (3, 'Jessica', 'Brown', 5, 7);
     """
     cur = conn.cursor()
     cur.execute(sql)

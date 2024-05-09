@@ -4,6 +4,8 @@ sql_create_employee_table = """
         firstname TEXT NOT NULL,
         lastname TEXT NOT NULL,
         years_of_experience INTEGER NOT NULL,
+        access_level INTEGER NOT NULL,
+        FOREIGN KEY (access_level) REFERENCES amenaties(id),
     );
 """
 
