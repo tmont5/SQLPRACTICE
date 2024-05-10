@@ -1,6 +1,6 @@
 import os
 
-from db import create_table, create_connection
+from db import create_table, create_connection, delete_table
 from schema import *
 
 
@@ -26,14 +26,14 @@ def insert_to_amenaties(conn):
     :return: project id
     """
     sql = """
-        INSERT INTO menu VALUES
-        (1, 'Swimming Pool'),
-        (2, 'Gym'),
-        (3, 'Spa'),
-        (4, 'Golf Park',
-        (5, 'Golf Course'),
-        (6, 'Horses'),
-        (7, 'Simulator');
+        INSERT INTO amenaties VALUES
+        ('Swimming Pool'),
+        ('Gym'),
+        ('Spa'),
+        ('Golf Park'),
+        ('Golf Course'),
+        ('Horses'),
+        ('Simulator');
     """
 
     cur = conn.cursor()
@@ -44,7 +44,7 @@ def insert_to_amenaties(conn):
 def insert_to_members(conn):
 
     sql = """
-        INSERT INTO customers VALUES
+        INSERT INTO member VALUES
 	    (1, 'Mark', 'Lee', 2, 4, 1),
         (2, 'Jenny', 'Lee', 1, 4, 1),
         (3, 'Shaun', 'White', NULL, 0, 7),
@@ -59,9 +59,9 @@ def insert_to_members(conn):
 def insert_to_employees(conn):
     sql = """
          INSERT INTO employee VALUES
-	        (1, 'Nicolene', 'Jones', 20, 7),
-            (2, 'Anna', 'Smith', 10, 7),
-            (3, 'Jessica', 'Brown', 5, 7);
+	        ('Nicolene', 'Jones', 20, 7),
+            ('Anna', 'Smith', 10, 7),
+            ('Jessica', 'Brown', 5, 7);
     """
     cur = conn.cursor()
     cur.execute(sql)
@@ -69,14 +69,19 @@ def insert_to_employees(conn):
     return cur.lastrowid
 
 
-def main():
+
+
+def build_main():
     database = "./pythonsqlite.db"
 
     # create a database connection
     conn = create_connection(database)
+    delete_table(conn, sql_drop_employee_table)
     create_table(conn, sql_create_employee_table)
     insert_to_employees(conn)
+    delete_table(conn, sql_drop_member_table)
     create_table(conn, sql_create_member_table)
     insert_to_members(conn)
+    delete_table(conn, sql_drop_amenaties_table)
     create_table(conn, sql_create_amenaties_table)
     insert_to_amenaties(conn)

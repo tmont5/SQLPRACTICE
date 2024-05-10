@@ -43,6 +43,17 @@ def create_table(conn, create_table_sql):
     except Error as e:
         print(e)
 
+def delete_table(conn, delete_table_sql):
+    """ create a table from the create_table_sql statement
+    :param conn: Connection object
+    :param delete_table_sql: a CREATE TABLE statement
+    :return:
+    """
+    try:
+        c = conn.cursor()
+        c.execute(delete_table_sql)
+    except Error as e:
+        print(e)
 
 if __name__ == '__main__':
     create_connection("db/pythonsqlite.db")

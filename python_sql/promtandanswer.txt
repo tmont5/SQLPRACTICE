@@ -1,0 +1,58 @@
+Question: Can you get the average acess level of the members
+AI-generated SQL query: 
+
+    SELECT AVG(access_level) FROM member;
+Answer: 
+
+(3.8,)
+
+Question:  What is the average number of children for members with an access level of 3 or higher?
+AI-generated SQL query: 
+SELECT AVG(number_of_children) FROM member WHERE access_level >= 3;
+Answer: 
+
+(2.0,)
+
+Question: Can you group the members by spouses, and print out each person adn thier spouse
+AI-generated SQL query: 
+
+    SELECT m1.firstname AS member, m2.firstname AS spouse
+    FROM member m1
+    LEFT JOIN member m2 ON m1.spouseID = m2.id
+    ORDER BY m1.firstname;
+Answer: 
+
+('Jenny', 'Mark')
+('Jim', 'Shauna')
+('Mark', 'Jenny')
+('Shaun', None)
+('Shauna', 'Jim’)
+
+Question: what are the employee's names
+AI-generated SQL query: 
+
+    SELECT firstname, lastname FROM employee;
+Answer: 
+
+('Nicolene', 'Jones')
+('Anna', 'Smith')
+('Jessica', 'Brown')
+
+
+Question:  What is the average access level of the employees
+AI-generated SQL query: 
+SELECT AVG(access_level) FROM employee;
+Answer: 
+
+(7.0,)
+
+Question: Who's worked the longest?
+AI-generated SQL query: 
+
+    SELECT firstname, lastname, years_of_experience
+    FROM employee
+    ORDER BY years_of_experience DESC
+    LIMIT 1;
+Answer: 
+
+('Nicolene', 'Jones', 20)

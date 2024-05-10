@@ -1,6 +1,19 @@
 import argparse
 from db import create_connection
 
+def select_all_from_amenaties(conn):
+    """
+    Query all rows in the tasks table
+    :param conn: the Connection object
+    :return:
+    """
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM amenaties")
+
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
 
 def select_all_from_menu(conn):
     """
@@ -35,7 +48,7 @@ if __name__ == "__main__":
     conn = create_connection(database)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--query", type=str, help="SELECT * FROM menu where unit_price >=55.0")
+    parser.add_argument("--query", type=str, help="SELECT * FROM member WHERE number_of_children >= 2")
     args = parser.parse_args()
     print(f"Executing query: {args.query}")
     select_from_table(conn, args.query)
